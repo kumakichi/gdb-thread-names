@@ -1,0 +1,14 @@
+define show_thread_name
+    set logging overwrite on
+    set logging redirect on
+    set logging file gdb_thread_dump
+    set logging on
+    set height 0
+    thread apply all bt
+    set logging off
+    shell entry=$(awk 'END{print $2}' gdb_thread_dump);prefix=${entry:0:6};record_num=$(awk "/"$prefix"/" gdb_thread_dump | awk 'END{print NR}');echo -e "Thread-Id\tThread-Func";awk "/"$prefix"/" gdb_thread_dump | awk -v max=$record_num '{print max+1-FNR,"\t\t",$4}' 
+end
+
+document show_thread_name
+    ONLY works with POSIX standard thread library
+end
