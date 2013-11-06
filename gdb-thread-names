@@ -10,5 +10,7 @@ define show_thread_name
 end
 
 document show_thread_name
+    show threads entry point function names
+
     ONLY works with POSIX standard thread library
 end

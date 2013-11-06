@@ -2,7 +2,7 @@
 
 This script can be used within GDB to show thread names,got from backtrace in GDB.
 
-*Be attention that this script works only with POSIX standard thread library*
+**Attention that this script works only with POSIX standard thread library**
 
 # Requirements
 
@@ -23,6 +23,10 @@ while in GDB, just type
 `show_thread_name`
 
 It will print the threads entry point function names.
+
+`help show_thread_name`
+
+Show help infomation.
 
 # Example
 
