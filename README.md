@@ -2,6 +2,8 @@
 
 This script can be used within GDB to show thread names,got from backtrace in GDB.
 
+*Be attention that this script works only with POSIX standard thread library*
+
 # Requirements
 
 GNU awk, which is used to filter the output of command 'backtrace' in GDB.
