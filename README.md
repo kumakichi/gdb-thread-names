@@ -34,16 +34,30 @@ Show help infomation.
 #include <pthread.h>
 #include <stdio.h>
 
+void foo_1(void)
+{
+	sleep(3);
+}
+
+void bar_1(void)
+{
+	sleep(3);
+}
+
 void *foo(void *arg)
 {
-	while (1)
+	while (1) {
+		foo_1();
 		sleep(10);
+	}
 }
 
 void *bar(void *arg)
 {
-	while (1)
+	while (1) {
+		bar_1();
 		sleep(10);
+	}
 }
 
 int main(int argc, char **argv)
