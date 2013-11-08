@@ -63,10 +63,13 @@ void *bar(void *arg)
 int main(int argc, char **argv)
 {
 	pthread_t t1, t2;
+
 	pthread_create(&t1, NULL, foo, NULL);
 	pthread_create(&t2, NULL, bar, NULL);
+
 	while (1)
 		sleep(10);
+
 	return 0;
 }
 ```
