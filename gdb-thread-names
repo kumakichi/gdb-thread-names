@@ -3,19 +3,14 @@ define show_thread_name
     set logging redirect on
     set height 0
 
-    set logging file gdb_thread_dump1
-    set logging on
-    info threads
-    set logging off
-
-    set logging file gdb_thread_dump2
+    set logging file gdb_thread_dump
     set logging on
     thread apply all bt
     set logging off
 
-    shell record_nums=$(awk 'END{print NR - 1}' gdb_thread_dump1);echo -e "Thread-Id\tThread-Func";awk '/start_thread/{print a;}{a=$0}END{print $0}' gdb_thread_dump2 | awk -v max=$record_nums '{print max+1-FNR,"\t\t",$4}'
+    shell awk '/Thread 0x/{print $2}' gdb_thread_dump > thread_numbers;echo -e "Thread-Id\tThread-Func";awk '/start_thread/{print a;}{a=$4}END{print $4}' gdb_thread_dump > thread_names;awk 'NR==FNR{a[NR]=$0;next}{print a[FNR],"\t\t",$0}' thread_numbers thread_names
 
-    shell rm gdb_thread_dump1 gdb_thread_dump2
+    shell rm gdb_thread_dump thread_numbers thread_names
 end
 
 document show_thread_name
